@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block title %}Add | {{fname}}{% endblock %}
+{%block content%}
+<div class="mid">
+<div><b>{{fname}}</b>&nbsp;|&nbsp;<a href="/logout">Logout</a></div>
+<h1>Add Todo List</h1>
+<form action="add-todo" method="post">
+<label>Job</label>
+<textarea name="job" required></textarea>
+<label>Status</label>
+<select name = "status" required>
+<option value = "pending">Pending</option>
+<option value = "cancelled">Cancelled</option>
+<option value = "done">Done</option>
+</select>
+
+<label>Date Due</label>
+<input type = "date" name="due" required></input>
+<input type="submit" value="Add">
+
+{%csrf_token%}
+</form>
+</div>
+{% endblock %}

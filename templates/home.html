@@ -1,0 +1,25 @@
+{%extends "base.html" %}
+{%block title %}{{fname}}{% endblock %}
+{%block content %}
+<div class="mid">
+<div>&nbsp;<b>{{fname}}</b>&nbsp;|&nbsp;<a href="/logout">Logout</a></div>
+<h1>Todo List</h1>
+<h3>Current Date: {% now 'D d M Y' %}</h3>
+<a href="add-todo">Add Todo</a>
+<table width="100%" cellpadding="5">
+<tr>
+<td width="40%">Date</td><td width="70%">Job</td><td width="30%">Status</td><td width="5%">Actions</td>
+</tr>
+{%for row in todo%}
+	{%if row.status == 'pending'%}
+		<tr><td>{{row.due_date|date:"D d M Y"}}</td><td>{{row.todo_job}}</td><td>{{row.status}}</td><td><a href="/edit-todo/{{row.id}}">Update Status</a>&nbsp;|&nbsp;<a href="/delete-todo/{{row.id}}">Delete</a></td></tr>
+	{%elif row.is_due%}
+		<tr><td>{{row.due_date|date:"D d M Y"}}</td><td>{{row.todo_job}}</td><td>{{row.status}}</td><td><a href="/edit-todo/{{row.id}}">Update Status</a>&nbsp;|&nbsp;<a href="/delete-todo/{{row.id}}">Delete</a></td></tr>
+
+	
+	{%endif%}
+	
+{%endfor%}
+</table>
+</div>
+{% endblock %}
